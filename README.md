@@ -11,27 +11,26 @@ export PYTHONPATH=$PYTHONPATH:/place_with_the_repository/slice_repository
 ## Data preparation for a new dataset
 
 The following procedure has to be run only once, when a new segregation table is added to the repository.
-1) GAM segregation table is provided a .table format. The .table file has to be renamed:
+- GAM segregation table is provided a .table format. The .table file has to be renamed:
   * set the extension to .txt;
   * the chosen name preceeding the .txt extension, has to start with the word "rawdata". We call name_root this name;
   * the convention for name_root is: rawdata_identification-name_resolution_number-of-tubes. For instance a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube will be called _rawdata_mesc_500kb_300x3.txt_;
 
-2) Run the script _prepare_data.sh_.
+- Run the script _prepare_data.sh_.
 
-3) Open _settings.py_:
+- Open _settings.py_:
   - add a line where the chosen name for name_root is assigned to the variable name_root. Following the example of point 1): _name_root = rawdata_mesc_500kb_300x3_
-  - insert the experimental parameter relative to the new segregation table in the following format, substituting the _xxx_ with the actual values:
-
-if name_root == "XXX":  
-  effective_NPs_per_tube = xxx 
-  resolution = xxx  
-  r_cell = xxx  
-  h = xxx   
-  genome_length = xxx    
-  alpha = compute_alpha()  
-  v = 1 / alpha  
-  F_mean = np.nan  
-  chr_dictionary = mouse_chr_dictionary  
+  - insert the experimental parameter relative to the new segregation table in the following format, substituting the _xxx_ with the actual values:  
+  if name_root == "XXX":  
+    effective_NPs_per_tube = xxx  
+    resolution = xxx  
+    r_cell = xxx  
+    h = xxx   
+    genome_length = xxx    
+    alpha = compute_alpha()  
+    v = 1 / alpha  
+    F_mean = np.nan  
+    chr_dictionary = mouse_chr_dictionary  
   
    - effective_NPs_per_tube is the number of NPs multiplied by 2 if the experiment is unphased, if the experiment is phased it is the number of NPs;
    - resolution is the segregation table resolution in bp (if it is 500kb, insert 500000);
@@ -41,7 +40,7 @@ if name_root == "XXX":
    - F_mean has to be left np.nan initially;
    - chr_dictionary is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
 
-4) in _slice_repository/starting_: run _create_segregation_pkl.py_; run _compute_F_mean.py_ and insert the printed output in the variable F_mean in _settings.py_. 
+- In _slice_repository/starting_: run _create_segregation_pkl.py_; run _compute_F_mean.py_ and insert the printed output in the variable F_mean in _settings.py_. 
 
 ## Run SLICE 
 
@@ -71,8 +70,7 @@ PI3 matrices with a fixed viewpoint are symmetric matrices with _NaN_ along the 
 
 ### interSLICE for inter-chromosomal pairwise contacts
 
-
-
+Run _slice_repository/main/compute_PI2_inter_beta_evaluation.py_. By default this scripts computes intra- and inter-chromosomal pi matrices on the whole genome, to restrict the computation only on specific chromosomes modify the lines l-31 to l-42. Intra-chromosomal PI2 are saved in _slice_repository/data/name_root/PI2_, inter-chromosomal PI2 are saved in _slice_repository/data/name_root/PI2_inter_beta_evaluation_.  
 
 ## Analysis of SLICE matrices
 
