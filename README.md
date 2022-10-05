@@ -4,9 +4,9 @@ This repository coontains the library developed by Federico Billeci, Luca Fioril
 
 ## How to install the library in linux
 
-To install the library download this repository and add its path to the enviroment variable PYTHONPATH:
+To install the library download this repository and add its path to the enviroment variable PYTHONPATH as follows:
 
-export PYTHONPATH=$PYTHONPATH:/place_with_the_repository/slice_repository
+_export PYTHONPATH=$PYTHONPATH:/place_with_the_repository/slice_repository_
 
 ## Data preparation for a new dataset
 
