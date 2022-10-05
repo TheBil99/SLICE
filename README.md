@@ -50,10 +50,24 @@ Run SLICE and interSLICE on a given dataset.
 In _slice_repository/settings.py_, uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
 
 ### SLICE for intra-chromosomal pairwise contacts
+Run _slice_repository/main/compute_PI2.py_. The chromosome to run SLICE on and the significance threshold can be passed as arguments in the command line. For instance, to run SLICE pairwise on chromosome 10 and to produce significant pi matrices with 95% as significance threshold, run the following command:  
+_python3 compute_PI2.py 10 95_
 
+The output of this run will be a pi matrix, a significant pi matrix and the beta array. The matrices are saved in the folder _slice_repository/data/name_root/PI2_, beta array is saved in _slice_repository/data/name_root/beta_. Informations about the pi calculation are printed in the standard output.  
+  
+PI2 matrices are symmetric matrices with _NaN_ along the diagonal. Only the upper triangular matrix is saved as horizontal array.
 
 ### SLICE for intra-chromosomal threewise contacts
 
+Run _slice_repository/main/compute_PI3.py_. The desired chromosome has to be indicated as argument of the function _single_chromosome_ in line l-72. PI3 are saved in _slice_repository/data/name_root/PI3_. Informations about the pi calculation are printed in the standard output.  
+  
+PI3 are completely symmetrical tensors, saved with a compression procedure for optimization purpose.
+
+### SLICE for intra-chromosomal threewise contacts with a fixed viewpoint
+
+Run _slice_repository/main/compute_PI3_viewpoint.py_. The desired chromosome and the position of the viewpoint in bp have to be indicated as arguments of the _function chromosome_fixed_i_ in line l-68. PI3 respect to the selected viewpoint are saved in _slice_repository/data/name_root/PI3_viewpoint_. Informations about the pi calculation are printed in the standard output.  
+
+PI3 matrices with a fixed viewpoint are symmetric matrices with _NaN_ along the diagonal. Only the upper triangular matrix is saved as horizontal array.
 
 ### interSLICE for inter-chromosomal pairwise contacts
 
