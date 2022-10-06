@@ -37,11 +37,10 @@ _export PYTHONPATH="${PYTHONPATH}:/path_to_the_repository/slice_repository"_
 The following procedure has to be run only once, when a new segregation table is added to the repository.
 - GAM segregation table is provided a .table format. The .table file has to be renamed:
   * set the extension to .txt;
-  * the chosen name preceeding the .txt extension, has to start with the word "rawdata", followed by a name used to identify the specific dataset;
-  * the convention for the file name is: rawdata_identification-name_resolution_number-of-tubes. For instance a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube will be called _rawdata_mesc_500kb_300x3.txt_. ;
+  * the chosen name preceeding the .txt extension, has to start with the word "rawdata", followed by the _name_root_;
+  * the convention for the _name_root_ is: identification-name_resolution_number-of-tubes. For instance, for a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube, a possible name_root can be _mesc_500kb_300x3.txt_, so the segregation table file is called  _rawdata_mesc_500kb_300x3.txt_. ;
 
-
-- Run the script _data_preparation.sh_ passing the chosen name_root as argument as follows:   `$ sh data_preparation.sh name_root`
+- Run the script _data_preparation.sh_ passing the chosen name_root as argument, as follows:   `$ sh data_preparation.sh name_root`
 
 - Move the file _rawdata_name_root.txt_ to the folder _slice_repository/data/name_root/_;
 - Open _settings.py_:
