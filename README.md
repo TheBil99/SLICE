@@ -39,11 +39,7 @@ The following procedure has to be run only once, when a new segregation table is
   * the chosen name preceeding the .txt extension, has to start with the word "rawdata". We call name_root this name;
   * the convention for name_root is: rawdata_identification-name_resolution_number-of-tubes. For instance a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube will be called _rawdata_mesc_500kb_300x3.txt_;
 
-- Run the script _prepare_data.sh_ as follows:
-
-'''
-$ ./prepare_data.sh
-'''
+- Run the script _prepare_data.sh_ passing the chosen name_root as argument as follows:   `$ ./prepare_data.sh name_root`
 
 
 - Open _settings.py_:
