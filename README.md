@@ -57,6 +57,12 @@ The following procedure has to be run only once, when a new segregation table is
     F_mean = np.nan  
     chr_dictionary = mouse_chr_dictionary  
   
+  ```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
+  
     - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
     - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
     - _r_cell_ is the cell radius in um;
