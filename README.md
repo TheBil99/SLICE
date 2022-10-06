@@ -21,7 +21,7 @@ The library is developed in Python 3.9.7.
 
 ## How to install the library 
 
-To install the library download this repository. It is necessary to add the path of the repository to the enviroment variable PYTHONPATH to allow the import of the library in Python.
+To install the library download this repository. It is necessary to add the path of the repository to the enviroment variable _PYTHONPATH_ to allow the import of the library in Python.
 
 ### Linux and Mac
 
