@@ -66,7 +66,7 @@ The following procedure has to be run only once, when a new segregation table is
     - _h_ is the NP thickness;
     - _genome_length_ is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
     - _F_mean_ has to be left np.nan initially;
-    - _chr_dictionary_ is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
+    - _chr_dictionary_ is _mouse_chr_dictionary_ or _human_chr_dictionary_ if the segregation table is relative to mouse or human, respectively; 
    - Uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
 
 - In _slice_repository/starting_: run _create_segregation_pkl.py_; run _compute_F_mean.py_ and insert the printed output in the variable F_mean in _settings.py_. 
