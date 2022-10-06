@@ -5,8 +5,8 @@ import os
 
 #name_root = "iza-mesc_1Mb_420x3"
 #name_root = "iza-mesc_150kb_420x3"
-#name_root = "mesc_46C_1Mb_481x1"
-name_root = "mesc_46C_150kb_481x1"
+name_root = "mesc_46C_1Mb_481x1"
+#name_root = "mesc_46C_150kb_481x1"
 #name_root = "dopa30_150kb_482x3"
 
 
