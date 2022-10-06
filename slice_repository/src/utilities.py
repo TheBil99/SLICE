@@ -45,7 +45,7 @@ def compute_npmi_inter(segregation_table_A, segregation_table_B):
     F_arr_A = compute_tube_segregation_frequency(segregation_table_A)
     F_arr_B = compute_tube_segregation_frequency(segregation_table_B)
 
-    F_mat = compute_tube_cosegregation_matrix_offdiag(segregation_table_A, segregation_table_B)
+    F_mat = compute_tube_cosegregation_matrix_inter(segregation_table_A, segregation_table_B)
 
     F_i = np.tile(F_arr_A, (len(F_arr_B), 1)).T
     F_j = np.tile(F_arr_B, (len(F_arr_A), 1))
@@ -55,7 +55,7 @@ def compute_npmi_inter(segregation_table_A, segregation_table_B):
 
     return npmi_mat
 
-def compute_tube_segregation_frequency_offdiag(segregation_table_A, segregation_table_B):
+def compute_tube_segregation_frequency_inter(segregation_table_A, segregation_table_B):
     """ Computes the tube segregation frequency of each DNA window from the Segregation Table. """
 
     n_tubes = np.shape(segregation_table_A)[1]
@@ -71,7 +71,7 @@ def compute_tube_segregation_frequency_offdiag(segregation_table_A, segregation_
 
     return F_arr_A, F_arr_B
 
-def compute_tube_cosegregation_matrix_offdiag(segregation_table_A, segregation_table_B):
+def compute_tube_cosegregation_matrix_inter(segregation_table_A, segregation_table_B):
     """ Computes the tube Co-Segregation matrix from the Segregation table. """
 
     n_tubes = np.shape(segregation_table_A)[1]
@@ -99,15 +99,15 @@ def compute_pi_nan(pi, sign_pi, seg_table, verbose = False):
     c = (np.count_nonzero(np.isnan(coseg_zeros))  -coseg_zeros.shape[0]  )/((coseg_zeros.shape[0]) * ((coseg_zeros.shape[0]) - 1))
     d = pi[pi == 1].size/((pi.shape[0]) * ((pi.shape[0]) - 1))
     if(verbose == True):
-        print("number of GAM nan:\t", c, "\nnumber of pi<0:\t", a-c, "\nnumber of significative pi:\t", b, "\nnumber of pi=1:\t", d)
+        print("fraction of GAM nan:\t", c, "\nfraction of pi<0:\t", a-c, "\nfraction of significative pi:\t", b, "\nfraction of pi=1:\t", d)
 
     return c, a - c, b, d
 
 def compute_pi_nan_inter(pi, sign_pi, seg_tableA, seg_table_B, verbose = False):
     """ Function that returns the number of NaN, pi<0 and significative pi for a given pi matrix in inter """
 
-    coseg_zeros = compute_tube_cosegregation_matrix_offdiag(seg_tableA, seg_table_B)
-    F_arr_A, F_arr_B= compute_tube_segregation_frequency_offdiag(seg_tableA, seg_table_B)
+    coseg_zeros = compute_tube_cosegregation_matrix_inter(seg_tableA, seg_table_B)
+    F_arr_A, F_arr_B= compute_tube_segregation_frequency_inter(seg_tableA, seg_table_B)
 
     coseg_zeros[:, np.isnan(F_arr_B)] = np.nan
     coseg_zeros[np.isnan(F_arr_A), :] = np.nan
@@ -118,7 +118,7 @@ def compute_pi_nan_inter(pi, sign_pi, seg_tableA, seg_table_B, verbose = False):
     d = pi[pi == 1].size/pi.shape[0]
 
     if(verbose == True):
-        print("number of GAM nan:\t", c, "\nnumber of pi<0:\t", a-c, "\nnumber of significative pi:\t", b, "\nnumber of pi=1:\t", d)
+        print("fraction of GAM nan:\t", c, "\nfraction of pi<0:\t", a-c, "\nfraction of significative pi:\t", b, "\nfraction of pi=1:\t", d)
 
     return c, a - c, b, d
 

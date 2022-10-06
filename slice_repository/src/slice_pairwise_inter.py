@@ -2,6 +2,16 @@ import warnings
 
 from src.utilities import *
 
+#from scipy.spatial.distance import squareform
+
+
+#########################################################################
+#########################################################################
+# Versione di interSLICE che lavora solo con la parte off diagonal di AB #
+#########################################################################
+#########################################################################
+
+
 def equation_for_s_mat(R_mat, K, F):
     """ Equation for computing Scialdone's s_mat using a generic R ( M2/(M1+M2) ) term. """
     
@@ -17,7 +27,7 @@ def equation_for_s_mat(R_mat, K, F):
     return s_mat
 
 
-def compute_s_mat_inter(F_arr_A, F_arr_B, F_mat, K, F):
+def compute_s_mat_offdiag(F_arr_A, F_arr_B, F_mat, K, F):
     """ Computes the SLICE-normalized Co-Segregation matrix. """
 
     F_i = np.tile(F_arr_A, (len(F_arr_B), 1)).T
@@ -30,14 +40,14 @@ def compute_s_mat_inter(F_arr_A, F_arr_B, F_mat, K, F):
     return s_mat
 
 
-def compute_pi_inter(s_mat, beta):
+def compute_pi_offdiag(s_mat):
     """ Computes the PI matrix. """
     # pi_mat = s_mat / (alpha - 1)
-    pi_mat = (1/2) *  (s_mat - beta) / (alpha - beta)
+    pi_mat = (1/2) * (s_mat - 1) / (alpha - 1)
 
     return pi_mat
 
-def compute_interpi_threshold(n_tubes, K, F, threshold,  beta ,generator):
+def compute_interpi_threshold(n_tubes, K, F, threshold,  generator):
     """ Computes the PI threshold using Scialdone's original method. """
 
     R_threshold = np.nan
@@ -48,15 +58,15 @@ def compute_interpi_threshold(n_tubes, K, F, threshold,  beta ,generator):
 
     # Compute the M-values, i.e. the probabilities for the multinomial extraction
 
-    M2 = -1 + 2 * F + (-1 + 2 * (1 - F) ** (1 / K) + beta*(1 - (1 - F) ** (1 / K)) ** 2) ** K
-    M1 = 2 - 2 * F - 2 * (-1 + 2 * (1 - F) ** (1 / K) + beta*(1 - (1 - F) ** (1 / K)) ** 2) ** K
+    M2 = -1 + 2 * F + (-1 + 2 * (1 - F) ** (1 / K) + (1 - (1 - F) ** (1 / K)) ** 2) ** K
+    M1 = 2 - 2 * F - 2 * (-1 + 2 * (1 - F) ** (1 / K) + (1 - (1 - F) ** (1 / K)) ** 2) ** K
     M0 = 1 - M1 - M2
 
     if M2 < 0 or M2 > 1 or M1 < 0 or M1 > 1 or M0 < 0 or M0 > 1:
         raise ValueError('Values outside of [0,1] for M0, M1, M2')
 
     # Extract the T-values from the multinomial distribution
-    # The if below allows the possibility to give a random generator as input to the function
+    # The if below allows the possibility to give a random generator as input to the function: can be useful for parallel applications
     if(generator == None):
         T_values = np.random.multinomial(n=n_tubes, pvals=[M2, M1, M0], size=n_multinomial_repetitions)
     else:
@@ -73,7 +83,7 @@ def compute_interpi_threshold(n_tubes, K, F, threshold,  beta ,generator):
 
     # Finally we compute the PI threshold using the PI functions
     s_threshold = equation_for_s_mat(R_threshold, K, F)
-    pi_threshold = compute_pi_inter(s_threshold, beta)
+    pi_threshold = compute_pi_offdiag(s_threshold)
 
     return pi_threshold
 
@@ -91,26 +101,23 @@ def SLICE_PAIRWISE_INTER(segregation_table_A, segregation_table_B, chrA, chrB,  
         K = effective_NPs_per_tube
         F = F_mean
 
+
     F_arr_A, F_arr_B = compute_tube_segregation_frequency_inter(segregation_table_A, segregation_table_B)
     F_mat = compute_tube_cosegregation_matrix_inter(segregation_table_A, segregation_table_B)
 
     F_mat[:, np.isnan(F_arr_B)] = np.nan
     F_mat[np.isnan(F_arr_A), :] = np.nan
 
-    s_mat = compute_s_mat_inter(F_arr_A, F_arr_B, F_mat, K, F)
+    s_mat = compute_s_mat_offdiag(F_arr_A, F_arr_B, F_mat, K, F)
 
-    ######
-    beta = np.nanmean(s_mat)
-    ######
-
-    pi_mat = compute_pi_inter(s_mat, beta = beta)
+    pi_mat = compute_pi_offdiag(s_mat)
     pi_mat[np.isinf(pi_mat)] = np.nan
 
-    pi_threshold = compute_interpi_threshold(n_tubes, K, F, threshold, beta = beta,generator = generator)
+    pi_threshold = compute_interpi_threshold(n_tubes, K, F, threshold, generator = generator)
     pi_significant_mat = np.copy(pi_mat)
     pi_significant_mat[pi_mat < pi_threshold] = np.nan
 
-    return pi_mat, pi_threshold, pi_significant_mat, F_mat, beta
+    return pi_mat, pi_threshold, pi_significant_mat, F_mat
 
 # FUNCTION THAT EXECUTES SLICE ANALYSIS AND REMOVES VALUES OUTSIDE O-1 RANGE
 
@@ -126,7 +133,7 @@ def inter_chromosome(segregation_table_A, segregation_table_B, chrA, chrB, thres
         warnings.filterwarnings("ignore", "invalid value encountered in", category=RuntimeWarning)
 
         # Compute Co-Segregation Matrix, PI matrix and PI significant matrix
-        pi_mat, _, pi_significant_mat, cosegregation_mat, beta = SLICE_PAIRWISE_INTER(segregation_table_A, segregation_table_B, chrA, chrB,  generator ,threshold)
+        pi_mat, _, pi_significant_mat, cosegregation_mat = SLICE_PAIRWISE_INTER(segregation_table_A, segregation_table_B, chrA, chrB,  generator ,threshold)
         #npmi_mat = compute_npmi(segregation_table)
 
         # Print percentages of PI NaN, < 0 and > 1
@@ -159,7 +166,6 @@ def inter_chromosome(segregation_table_A, segregation_table_B, chrA, chrB, thres
             print("STD PI value: " + str(std_pi))
             print("Mean SIGNIFICATIVE PI value: " + str(mean_significant_pi))
             print("STD SIGNIFICATIVE PI value: " + str(std_significant_pi))
-            print("beta: " + str(beta))
 
 
     # Save arrays as npy files (binary files)
@@ -167,9 +173,9 @@ def inter_chromosome(segregation_table_A, segregation_table_B, chrA, chrB, thres
         if(verbose == True):
             print("Saving data ...")
 
-        np.save(data_path + name_root + "/PI2_inter_beta_evaluation/PI2_inter_" + chrA + "_" + chrB + "_" + name_root + ".npy", pi_mat)
-        np.save(data_path + name_root + "/PI2_inter_beta_evaluation/PI2_inter_significant_" + str(threshold) + "_" + chrA + "_" + chrB + "_" + name_root + ".npy", pi_significant_mat)
-        #np.save(data_path + name_root + "/cosegregation_matrix_inter/cosegregation_matrix_inter_" + chrA + "_" + chrB + "_" + name_root + ".npy", cosegregation_mat)
+        np.save(data_path + name_root + "/PI2_inter/PI2_inter_" + chrA + "_" + chrB + "_" + name_root + ".npy", pi_mat)
+        np.save(data_path + name_root + "/PI2_inter/PI2_inter_significant_" + str(threshold) + "_" + chrA + "_" + chrB + "_" + name_root + ".npy", pi_significant_mat)
+        np.save(data_path + name_root + "/cosegregation_matrix_inter/cosegregation_matrix_inter_" + chrA + "_" + chrB + "_" + name_root + ".npy", cosegregation_mat)
         
         #np.save(data_path + name_root + "/NPMI_inter/NPMI_" + chrA + "_" + chrB + "_" + name_root + ".npy", npmi_arr)
 
