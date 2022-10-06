@@ -104,7 +104,7 @@ Run _slice_repository/main/compute_PI2_inter_beta_evaluation.py_. By default thi
 ## Analysis of SLICE matrices
 
 Inside the folder _slice_repository/data_analysis_, the script _contact_matrix_utils.py_ contains functions used to analyze the results produced by SLICE and interSLICE. 
-The same folder contains the notebooks _chr12_chr18_1NP_1Mb_beta_comparison.ipynb_,  _chr12_chr18_1NP_150kb.ipynb_, and _averages_genomewide_1NP_1Mb.ipynb_. 
+The same folder contains the notebooks _chr12_chr18_1NP_1Mb_beta_comparison.ipynb_,  _chr12_chr18_1NP_150kb.ipynb_, and _averages_genomewide_1NP_1Mb.ipynb_, used to analyse the results produced by SLICE and interSLICE and to return the images. 
 
 ## Acknowledgements
 
