@@ -2,11 +2,17 @@
 
 This repository coontains the library developed by Federico Billeci, Luca Fiorillo and Francesco Musella to implement SLICE and interSLICE analysis on Genome Architecture Mapping data. Luca Fiorillo and Francesco Musella developed the scrips for the SLICE analysis of intra-chromosomal contacts. Federico Billeci developed the scripts for the interSLICE analysis of inter-chromosomal contacts.
 
-## How to install the library in linux
+## How to install the library 
 
-To install the library download this repository and add its path to the enviroment variable PYTHONPATH as follows:
+To install the library download this repository. It is necessary to add the path of the repository to the enviroment variable PYTHONPATH to allow the import of the library in Python.
 
-_export PYTHONPATH=$PYTHONPATH:/place_with_the_repository/slice_repository_
+### Linux and Mac
+
+Add the following line to _.bashrc_ file:
+
+_export PYTHONPATH="${PYTHONPATH}:/path_to_the_repository/slice_repository"_
+
+### Windows
 
 ## Data preparation for a new dataset
 
