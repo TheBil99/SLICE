@@ -12,7 +12,8 @@ name_root = "mesc_46C_150kb_481x1"
 
 # Insert the path for the pickle containing the segregation table
 
-data_path = os.getcwd() + '/data/'
+data_path = os.path.dirname(os.path.abspath(__file__)) + '/data/'
+
 
 def compute_alpha():
 
