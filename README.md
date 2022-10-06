@@ -15,9 +15,10 @@ This repository coontains the library to implement SLICE and interSLICE analysis
 
 The library is developed in Python 3.9.7.
 
-- numpy version 1.21.2
-- matplotlib version 3.4.2
-- pandas version 1.3.3
+- numpy 1.21.2
+- matplotlib 3.4.2
+- pandas 1.3.3
+- scipy 1.7.1
 
 ## How to install the library 
 
@@ -36,14 +37,15 @@ _export PYTHONPATH="${PYTHONPATH}:/path_to_the_repository/slice_repository"_
 The following procedure has to be run only once, when a new segregation table is added to the repository.
 - GAM segregation table is provided a .table format. The .table file has to be renamed:
   * set the extension to .txt;
-  * the chosen name preceeding the .txt extension, has to start with the word "rawdata". We call name_root this name;
-  * the convention for name_root is: rawdata_identification-name_resolution_number-of-tubes. For instance a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube will be called _rawdata_mesc_500kb_300x3.txt_;
+  * the chosen name preceeding the .txt extension, has to start with the word "rawdata", followed by a name used to identify the specific dataset;
+  * the convention for the file name is: rawdata_identification-name_resolution_number-of-tubes. For instance a GAM segregation table at 500kb resolution relative to mESC cells, done with 300 tubes and 3 NP per tube will be called _rawdata_mesc_500kb_300x3.txt_. ;
+
 
 - Run the script _data_preparation.sh_ passing the chosen name_root as argument as follows:   `$ sh data_preparation.sh name_root`
 
-
+- Move the file _rawdata_name_root.txt_ to the folder _slice_repository/data/name_root/_;
 - Open _settings.py_:
-  - add a line where the chosen name for name_root is assigned to the variable name_root. Following the example of point 1): _name_root = rawdata_mesc_500kb_300x3_
+  - add a line where the chosen name for name_root is assigned to the variable name_root. Following the example of point 1): _name_root = mesc_500kb_300x3_
   - insert the experimental parameter relative to the new segregation table in the following format, substituting the _xxx_ with the actual values:  
   if name_root == "XXX":  
     effective_NPs_per_tube = xxx  
@@ -63,6 +65,8 @@ The following procedure has to be run only once, when a new segregation table is
    - genome_length is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
    - F_mean has to be left np.nan initially;
    - chr_dictionary is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
+
+- Uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
 
 - In _slice_repository/starting_: run _create_segregation_pkl.py_; run _compute_F_mean.py_ and insert the printed output in the variable F_mean in _settings.py_. 
 
