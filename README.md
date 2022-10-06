@@ -57,13 +57,13 @@ The following procedure has to be run only once, when a new segregation table is
     F_mean = np.nan  
     chr_dictionary = mouse_chr_dictionary  
   
-   - effective_NPs_per_tube is the number of NPs multiplied by 2 if the experiment is unphased, if the experiment is phased it is the number of NPs;
-   - resolution is the segregation table resolution in bp (if it is 500kb, insert 500000);
-   - r_cell is the cell radius in um;
-   - h is the NP thickness 
-   - genome_length is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
-   - F_mean has to be left np.nan initially;
-   - chr_dictionary is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
+   - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
+   - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
+   - _r_cell_ is the cell radius in um;
+   - _h_ is the NP thickness;
+   - _genome_length_ is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
+   - _F_mean_ has to be left np.nan initially;
+   - _chr_dictionary_ is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
 
 - Uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
 
