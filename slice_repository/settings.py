@@ -1,26 +1,18 @@
 import numpy as np
+import os
 
 # Select which dataset to use
 
-
-#name_root = "ana_mesc_40_1122"
-#name_root = "ana_mesc_1Mb_1122"
-#name_root = "beagrie_mesc2017_30kb_408"
-#name_root = "beagrie_mesc2017_1Mb_408"
-#name_root = "mesc_46C_1Mb_447x3"
-
-
-name_root = "iza-mesc_1Mb_420x3"
+#name_root = "iza-mesc_1Mb_420x3"
 #name_root = "iza-mesc_150kb_420x3"
 #name_root = "mesc_46C_1Mb_481x1"
-#name_root = "mesc_46C_150kb_481x1"
-
+name_root = "mesc_46C_150kb_481x1"
 #name_root = "dopa30_150kb_482x3"
+
 
 # Insert the path for the pickle containing the segregation table
 
-data_path = '/home/federico/Università/Tesi_magistrale/SLICE/slice_repository/data/' 
-
+data_path = os.getcwd() + '/data/'
 
 def compute_alpha():
 
@@ -41,9 +33,6 @@ mouse_chr_dictionary = dict({"chr1": 1, "chr2": 2, "chr3": 3, "chr4": 4,
                              "chr9": 9, "chr10": 10, "chr11": 11, "chr12": 12,
                              "chr13": 13, "chr14": 14, "chr15": 15, "chr16": 16,
                              "chr17": 17, "chr18": 18, "chr19": 19, "chrX": -1})
-
-mouse_chr1_dictionary = dict({"chr1": 1})
-
 
 # Set the parameters for each dataset
 if name_root == "iza-mesc_1Mb_420x3":
@@ -70,8 +59,6 @@ if name_root == "iza-mesc_150kb_420x3":
     
     chr_dictionary = mouse_chr_dictionary
 
-
-
 if name_root == "mesc_46C_1Mb_481x1":
     effective_NPs_per_tube = 2
     resolution = 1000 * 10**3  # in bp
@@ -95,7 +82,6 @@ if name_root == "mesc_46C_150kb_481x1":
     F_mean = 0.12871518750761243
     chr_dictionary = mouse_chr_dictionary
 
-
 if name_root == "dopa30_150kb_482x3":
     effective_NPs_per_tube = 6
     resolution = 150 * 10**3  # in bp
@@ -105,72 +91,6 @@ if name_root == "dopa30_150kb_482x3":
     alpha = compute_alpha()
     v = 1 / alpha
     F_mean = 0.3160606254627158
-    chr_dictionary = mouse_chr_dictionary
-
-
-
-################################################################
-################################################################
-################################################################
-################################################################
-
-
-if name_root == "mesc_46C_1Mb_447x3":
-    effective_NPs_per_tube = 6
-    resolution = 1000 * 10**3  # in bp
-    r_cell = 4.6  # in um
-    h = 0.22  # in um
-    genome_length = 5.20 * 10**9  # in bp
-    alpha = compute_alpha()
-    v = 1 / alpha
-    F_mean = 0.45133353120759834
-    chr_dictionary = mouse_chr_dictionary
-
-
-
-
-if name_root == "ana_mesc_40_1122":
-    effective_NPs_per_tube = 2
-    resolution = 40 * 10**3  # in bp
-    r_cell = 4.6  # in um
-    h = 0.22  # in um
-    genome_length = 5.20 * 10**9  # in bp
-    alpha = compute_alpha()
-    v = 1 / alpha
-    F_mean = 0.058409595862775936
-    chr_dictionary = mouse_chr_dictionary
-
-if name_root == "ana_mesc_1Mb_1122":
-    effective_NPs_per_tube = 1
-    resolution = 1000 * 10**3  # in bp
-    r_cell = 4.6  # in um
-    h = 0.22  # in um
-    genome_length = 5.20 * 10**9  # in bp
-    alpha = compute_alpha()
-    v = 1 / alpha
-    F_mean = 0.176199303437403
-    chr_dictionary = mouse_chr_dictionary
-
-if name_root == "beagrie_mesc2017_30kb_408":
-    effective_NPs_per_tube = 2
-    resolution = 30 * 10**3  # in bp
-    r_cell = 4.6  # in um
-    h = 0.22  # in um
-    genome_length = 5.20 * 10**9  # in bp
-    alpha = compute_alpha()
-    v = 1 / alpha
-    F_mean = 0.064988995752514
-    chr_dictionary = mouse_chr_dictionary
-
-if name_root == "beagrie_mesc2017_1Mb_408":
-    effective_NPs_per_tube = 2
-    resolution = 1000 * 10**3  # in bp
-    r_cell = 4.6  # in um
-    h = 0.22  # in um
-    genome_length = 5.20 * 10**9  # in bp
-    alpha = compute_alpha()
-    v = 1 / alpha
-    F_mean = 0.2291339046273294
     chr_dictionary = mouse_chr_dictionary
 
 if name_root == "xxx":
@@ -183,12 +103,17 @@ if name_root == "xxx":
     v = 1 / alpha
     F_mean = np.nan
     chr_dictionary = mouse_chr_dictionary
+
+
+
 eff_mean = (1 - (1 - F_mean) ** (1 / effective_NPs_per_tube)) / v
 
 # List of chromosomes of interest, keys from the previous dictionary
+
 chr_list = list(chr_dictionary.keys())
 
 # Print info
+
 def print_info():
     print("Parameters:")
     print("name_root: " + name_root)
