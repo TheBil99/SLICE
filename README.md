@@ -3,6 +3,13 @@
 This repository coontains the library developed by Federico Billeci, Luca Fiorillo and Francesco Musella to implement SLICE and interSLICE analysis on Genome Architecture Mapping data. Luca Fiorillo and Francesco Musella developed the scrips for the SLICE analysis of intra-chromosomal contacts. Federico Billeci developed the scripts for the interSLICE analysis of inter-chromosomal contacts.  
 The library is fully developed on Python version 3.9.7 .
 
+## Table of Contents
+* [Dependencies](#dependencies)
+* [Data preparation for a new dataset](#data-prep)
+* [Run SLICE](#run)
+* [Analysis of SLICE matrices](#analysis)
+
+
 ## Dependencies
 
 - numpy version 1.21.2
