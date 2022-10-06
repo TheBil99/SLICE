@@ -57,15 +57,14 @@ The following procedure has to be run only once, when a new segregation table is
     F_mean = np.nan  
     chr_dictionary = mouse_chr_dictionary  
   
-   - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
-   - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
-   - _r_cell_ is the cell radius in um;
-   - _h_ is the NP thickness;
-   - _genome_length_ is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
-   - _F_mean_ has to be left np.nan initially;
-   - _chr_dictionary_ is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
-
-- Uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
+    - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
+    - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
+    - _r_cell_ is the cell radius in um;
+    - _h_ is the NP thickness;
+    - _genome_length_ is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
+    - _F_mean_ has to be left np.nan initially;
+    - _chr_dictionary_ is mouse_chr_dictionary or human_chr_dictionary if the segregation table is relative to mouse or human, respectively; 
+   - Uncomment only the line which assigns to the variable _name_root_ the name of the selected dataset.
 
 - In _slice_repository/starting_: run _create_segregation_pkl.py_; run _compute_F_mean.py_ and insert the printed output in the variable F_mean in _settings.py_. 
 
