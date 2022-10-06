@@ -17,8 +17,8 @@ df_segregation = pd.read_pickle(data_path + name_root + "/segregation_" + name_r
 
 # indicate in the following lines which chromosomes to run interSLICE on
 
-n_chromosomes = 19
-chromosomes = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19"]
+n_chromosomes = 2
+chromosomes = ["chr12", "chr18"]
 
 # the following lines allow to chose the random generator and a seed for the random generation
 # setting rg to None to use the default numpy random generator, with no need to specify the seed 
@@ -40,5 +40,6 @@ for i in range(n_chromosomes):
         else:
             segregation_table = df_segregation[chrA]["segregation_table"]
             single_chromosome(chrA, segregation_table,threshold = 95, verbose = False, save = True, ret = False, generator = rg)
-
+           
+            
 del df_segregation
