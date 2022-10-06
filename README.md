@@ -46,7 +46,10 @@ The following procedure has to be run only once, when a new segregation table is
 - Open _settings.py_:
   - add a line where the chosen name for name_root is assigned to the variable name_root. Following the example of point 1): _name_root = mesc_500kb_300x3_
   - insert the experimental parameter relative to the new segregation table in the following format, substituting the _xxx_ with the actual values:  
-  if name_root == "XXX":  
+  
+  
+    ```
+    if name_root == "XXX":  
     effective_NPs_per_tube = xxx  
     resolution = xxx  
     r_cell = xxx  
@@ -56,12 +59,7 @@ The following procedure has to be run only once, when a new segregation table is
     v = 1 / alpha  
     F_mean = np.nan  
     chr_dictionary = mouse_chr_dictionary  
-  
-  ```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
+    ```
   
     - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
     - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
