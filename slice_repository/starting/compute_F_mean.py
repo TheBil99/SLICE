@@ -1,6 +1,4 @@
 import pandas as pd
-#import sys
-#sys.path.insert(1, '/home/federico/Università/Tesi_magistrale/SLICE/slice_repository/')
 from settings import *
 from src.slice_pairwise import compute_tube_segregation_frequency
 
