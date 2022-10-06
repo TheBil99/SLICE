@@ -5,9 +5,9 @@ The library is fully developed on Python version 3.9.7 .
 
 ## Table of Contents
 * [Dependencies](#dependencies)
-* [Data preparation for a new dataset](#data-prep)
-* [Run SLICE](#run)
-* [Analysis of SLICE matrices](#analysis)
+* [Data preparation for a new dataset](#data-preparation-for-a-new-dataset)
+* [Run SLICE](#run-slice)
+* [Analysis of SLICE matrices](#analysis-of-slice-matrices)
 * [Acknowledgements](#acknowledgements)
 * [Contacts](#contacts)
 
