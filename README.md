@@ -50,15 +50,15 @@ The following procedure has to be run only once, when a new segregation table is
   
     ```
     if name_root == "XXX":  
-    effective_NPs_per_tube = xxx  
-    resolution = xxx  
-    r_cell = xxx  
-    h = xxx   
-    genome_length = xxx    
-    alpha = compute_alpha()  
-    v = 1 / alpha  
-    F_mean = np.nan  
-    chr_dictionary = mouse_chr_dictionary  
+     effective_NPs_per_tube = xxx  
+     resolution = xxx  
+     r_cell = xxx  
+     h = xxx   
+     genome_length = xxx    
+     alpha = compute_alpha()  
+     v = 1 / alpha  
+     F_mean = np.nan  
+     chr_dictionary = mouse_chr_dictionary  
     ```
   
     - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
