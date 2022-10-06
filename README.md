@@ -1,6 +1,6 @@
 # SLICE 
 
-This repository coontains the library developed by Federico Billeci, Luca Fiorillo and Francesco Musella to implement SLICE and interSLICE analysis on Genome Architecture Mapping data. Luca Fiorillo and Francesco Musella developed the scrips for the SLICE analysis of intra-chromosomal contacts. Federico Billeci developed the scripts for the interSLICE analysis of inter-chromosomal contacts.  
+This repository coontains the library to implement SLICE and interSLICE analysis on Genome Architecture Mapping data ( Beagrie RA et Al. , Nature 543, 519–524 (2017) ).  
 The library is fully developed on Python version 3.9.7 .
 
 ## Table of Contents
@@ -8,6 +8,8 @@ The library is fully developed on Python version 3.9.7 .
 * [Data preparation for a new dataset](#data-prep)
 * [Run SLICE](#run)
 * [Analysis of SLICE matrices](#analysis)
+* [Acknowledgements](#acknowledgements)
+* [Contacts](#contacts)
 
 
 ## Dependencies
@@ -96,3 +98,11 @@ Run _slice_repository/main/compute_PI2_inter_beta_evaluation.py_. By default thi
 
 Inside the folder _slice_repository/data_analysis_, the script _contact_matrix_utils.py_ contains functions used to analyze the results produced by SLICE and interSLICE. 
 The same folder contains the notebooks _chr12_chr18_1NP_1Mb_beta_comparison.ipynb_,  _chr12_chr18_1NP_150kb.ipynb_, and _averages_genomewide_1NP_1Mb.ipynb_. 
+
+## Acknowledgements
+
+Luca Fiorillo and Francesco Musella developed the scrips for the SLICE analysis of intra-chromosomal contacts. Federico Billeci developed the scripts for the interSLICE analysis of inter-chromosomal contacts.  
+
+## Contacts
+
+Feel free to contact me at _federicobilleci99@gmail.com_.
