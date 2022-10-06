@@ -1,7 +1,6 @@
 # SLICE 
 
-This repository coontains the library to implement SLICE and interSLICE analysis on Genome Architecture Mapping data ( Beagrie RA et Al. , Nature 543, 519–524 (2017) ).  
-The library is fully developed on Python version 3.9.7 .
+This repository coontains the library to implement SLICE and interSLICE analysis on Genome Architecture Mapping ( Beagrie RA et Al. , Nature (2017) ) data .
 
 ## Table of Contents
 * [Dependencies](#dependencies)
@@ -13,6 +12,8 @@ The library is fully developed on Python version 3.9.7 .
 
 
 ## Dependencies
+
+The library is developed in Python 3.9.7.
 
 - numpy version 1.21.2
 - matplotlib version 3.4.2
