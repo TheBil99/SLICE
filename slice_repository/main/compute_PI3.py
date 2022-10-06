@@ -1,8 +1,4 @@
 import pandas as pd
-
-#import sys
-#sys.path.insert(1, '/home/federico/Università/Tesi_magistrale/SLICE/slice_repository/')
-
 from src.slice_triplewise import *
 import warnings
 

@@ -1,31 +1,27 @@
-from email import generator
 from numpy import single
 import pandas as pd
-import sys
 from scipy.spatial.distance import squareform
-import multiprocessing as mp
 from numpy.random import Generator, MT19937
 
 from settings import name_root, print_info, data_path
 from src.slice_pairwise import single_chromosome
 from src.slice_pairwise_inter_beta_evaluation import inter_chromosome
 
-# Computes the PI2s for a single chromosome
+# Computes the PI2s in intra and in inter for the given chromosomes
+print_info()
 
 # Load Segregation data
 df_segregation = pd.read_pickle(data_path + name_root + "/segregation_" + name_root + ".pkl")
 
+# CALL FUNCTIONS HERE
 
-start_chr = 1;   stop_chr = 19
+# indicate in the following lines which chromosomes to run interSLICE on
 
-stop_chr += 1
-chromosomes = []
-n_chromosomes = stop_chr - start_chr
+n_chromosomes = 19
+chromosomes = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19"]
 
-   
-for i in range(start_chr, stop_chr):
-    chrA = 'chr' + str(i)
-    chromosomes += [chrA]
+# the following lines allow to chose the random generator and a seed for the random generation
+# setting rg to None to use the default numpy random generator, with no need to specify the seed 
 
 s = 3545135
 rg = Generator(MT19937(s))

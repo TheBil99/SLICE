@@ -1,9 +1,4 @@
 import pandas as pd
-
-#import sys
-#sys.path.insert(1, '/home/federico/Università/Tesi_magistrale/SLICE/slice_repository/')
-
-
 from src.slice_triplewise_viewpoint import *
 from matplotlib import pyplot as plt
 from matplotlib import cm
