@@ -30,8 +30,6 @@ Add the following line to _.bashrc_ file:
 
 _export PYTHONPATH="${PYTHONPATH}:/path_to_the_repository/slice_repository"_
 
-### Windows
-
 ## Data preparation for a new dataset
 
 The following procedure has to be run only once, when a new segregation table is added to the repository.
