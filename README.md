@@ -62,8 +62,8 @@ The following procedure has to be run only once, when a new segregation table is
   
     - _effective_NPs_per_tube_ is the number of NPs multiplied by 2 if the experiment is unphased. For a phased experiment, it is the number of NPs;
     - _resolution_ is the segregation table resolution in bp (if it is 500kb, insert 500000);
-    - _r_cell_ is the cell radius in um;
-    - _h_ is the NP thickness;
+    - _r_cell_ is the cell radius in micrometers;
+    - _h_ is the NP thickness in micrometers;
     - _genome_length_ is the lenght of the whole genome, counting twice the diploid chromosomes and including chromosomes X and Y;   
     - _F_mean_ has to be left np.nan initially;
     - _chr_dictionary_ is _mouse_chr_dictionary_ or _human_chr_dictionary_ if the segregation table is relative to mouse or human, respectively; 
